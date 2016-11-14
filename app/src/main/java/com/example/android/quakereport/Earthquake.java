@@ -11,7 +11,7 @@ public class Earthquake {
     /**
      * Magnitude of the earthquake
      */
-    private float mMagnitude;
+    private String mMagnitude;
 
     /**
      * Location of the earthquake
@@ -30,7 +30,7 @@ public class Earthquake {
      * @param location  is the location of the earthquake
      * @param date      is the date of the earthquake
      */
-    public Earthquake(float magnitude, String location, String date) {
+    public Earthquake(String magnitude, String location, String date) {
         mMagnitude = magnitude;
         mLocation = location;
         mDate = date;
@@ -39,7 +39,7 @@ public class Earthquake {
     /**
      * Get the magnitude of the earthquake
      */
-    public float getMagnitude() {
+    public String getMagnitude() {
         return mMagnitude;
     }
 
@@ -60,10 +60,9 @@ public class Earthquake {
     @Override
     public String toString() {
         return "Earthquake{" +
-                "mMagnitude=" + mMagnitude +
+                "mMagnitude='" + mMagnitude + '\'' +
                 ", mLocation='" + mLocation + '\'' +
                 ", mDate='" + mDate + '\'' +
                 '}';
     }
-
 }

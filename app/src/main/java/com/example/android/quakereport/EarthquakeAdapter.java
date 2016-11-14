@@ -22,13 +22,22 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     /**
      * This is my own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data I want to populate into the list.
-     * @param context The current context. Used to inflate the layout file.
+     *
+     * @param context    The current context. Used to inflate the layout file.
      * @param earthquake A list of Earthquake objects to display in a list.
      */
     public EarthquakeAdapter(Activity context, ArrayList<Earthquake> earthquake) {
-        super(context,0,earthquake);
+        super(context, 0, earthquake);
     }
 
+    /**
+     * Provices a view for an AdapterView(ListView, GridView, etc.)
+     *
+     * @param position The position in the list of data that should be displayed in the list item view.
+     * @param convertView The recycled view to populate.
+     * @param parent The parent ViewGroup that is used for inflation.
+     * @return The View for the position in the AdapterView.
+     */
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

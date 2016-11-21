@@ -50,35 +50,34 @@ public class QueryUtils {
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
-
-            // Convert SAMPLE_JSON_RESPONSE String into a JSONObject
+            //Create a JSONObject from the SAMPLE_JSON_RESPONSE String
             JSONObject baseJsonResponse = new JSONObject(SAMPLE_JSON_RESPONSE);
 
-            //Extract “features” JSONArray
+            //Extract the JSONArray associated with the key called "features",
+            //which represents a list of features (or earthquakes).
             JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
 
-            // Loop through each feature in the array
+            //For each earthquake in the earthquakeArray, create an {@link Earthquake} object
             for (int i = 0; i < earthquakeArray.length(); i++) {
 
                 //Get earthquake JSONObject at position i
-                JSONObject jsonObject = earthquakeArray.getJSONObject(i);
+                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
 
                 //Get “properties” JSONObject
-                JSONObject properties = jsonObject.getJSONObject("properties");
+                JSONObject properties = currentEarthquake.getJSONObject("properties");
 
                 //Extract “mag” for magnitude
-                String mag = properties.optString("mag").toString();
+                String magnitude = properties.getString("mag");
 
                 //Extract “place” for location
-                String location = properties.optString("place").toString();
+                String location = properties.getString("place");
 
                 //Extract “time” for time
-                String time = properties.optString("time").toString();
+                String time = properties.getString("time");
 
                 //Create Earthquake java object from magnitude, location, and time
-                earthquakes.add(new Earthquake(mag, location, time));
+                //Add earthquake to list of earthquakes
+                earthquakes.add(new Earthquake(magnitude, location, time));
             }
 
         } catch (JSONException e) {

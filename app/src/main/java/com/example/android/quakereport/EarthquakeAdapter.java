@@ -67,17 +67,17 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         //Test beforehand if the string contains "of"
         if (locationString.contains("of")) {
             String[] parts = locationString.split("of");
-            part1 = parts[0]+"of";
+            part1 = parts[0] + "of";
             part2 = parts[1];
         } else {
             part1 = "Near the";
             part2 = locationString;
         }
 
-        //Find the TextView in the list_item.xml layout with the ID rest_location
-        TextView restLocationTextView = (TextView) listItemView.findViewById(R.id.rest_location);
+        //Find the TextView in the list_item.xml layout with the ID location_offset
+        TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.location_offset);
         //Get the rest location (part 1) from the current Earthquake object and set this text on the restLocation Textview.
-        restLocationTextView.setText(part1);
+        locationOffsetTextView.setText(part1);
 
         //Find the TextView in the list_item.xml layout with the ID primary_location
         TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primary_location);

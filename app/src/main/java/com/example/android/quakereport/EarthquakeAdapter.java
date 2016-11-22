@@ -21,6 +21,9 @@ import java.util.Date;
  */
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
+    String part1;
+    String part2;
+
     /**
      * This is my own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data I want to populate into the list.
@@ -58,10 +61,28 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         //Get the magnitude from the current Earthquake object and set this text on the magnitude Textview.
         magnitudeTextView.setText(currentEarthquake.getMagnitude());
 
-        //Find the TextView in the list_item.xml layout with the ID location
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.location);
-        //Get the magnitude from the current Earthquake object and set this text on the magnitude Textview.
-        locationTextView.setText(currentEarthquake.getLocation());
+        //Get the String of Location from currentEarthquake Object
+        String locationString = currentEarthquake.getLocation();
+
+        //Test beforehand if the string contains "of"
+        if (locationString.contains("of")) {
+            String[] parts = locationString.split("of");
+            part1 = parts[0]+"of";
+            part2 = parts[1];
+        } else {
+            part1 = "Near the";
+            part2 = locationString;
+        }
+
+        //Find the TextView in the list_item.xml layout with the ID rest_location
+        TextView restLocationTextView = (TextView) listItemView.findViewById(R.id.rest_location);
+        //Get the rest location (part 1) from the current Earthquake object and set this text on the restLocation Textview.
+        restLocationTextView.setText(part1);
+
+        //Find the TextView in the list_item.xml layout with the ID primary_location
+        TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primary_location);
+        //Get the rest location (part 1) from the current Earthquake object and set this text on the restLocation Textview.
+        primaryLocationTextView.setText(part2);
 
         //Create a new Date Object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());

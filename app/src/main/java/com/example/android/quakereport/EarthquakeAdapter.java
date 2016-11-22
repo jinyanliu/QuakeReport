@@ -21,8 +21,10 @@ import java.util.Date;
  */
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
-    String part1;
-    String part2;
+    private static final String LOCATION_SEPARATOR = " of ";
+
+    String primaryLocation;
+    String locationOffset;
 
     /**
      * This is my own custom constructor (it doesn't mirror a superclass constructor).
@@ -65,24 +67,24 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         String locationString = currentEarthquake.getLocation();
 
         //Test beforehand if the string contains "of"
-        if (locationString.contains("of")) {
-            String[] parts = locationString.split("of");
-            part1 = parts[0] + "of";
-            part2 = parts[1];
+        if (locationString.contains(LOCATION_SEPARATOR)) {
+            String[] parts = locationString.split(LOCATION_SEPARATOR);
+            locationOffset = parts[0] + LOCATION_SEPARATOR;
+            primaryLocation = parts[1];
         } else {
-            part1 = "Near the";
-            part2 = locationString;
+            locationOffset = getContext().getString(R.string.near_the);
+            primaryLocation = locationString;
         }
 
         //Find the TextView in the list_item.xml layout with the ID location_offset
         TextView locationOffsetTextView = (TextView) listItemView.findViewById(R.id.location_offset);
         //Get the rest location (part 1) from the current Earthquake object and set this text on the restLocation Textview.
-        locationOffsetTextView.setText(part1);
+        locationOffsetTextView.setText(locationOffset);
 
         //Find the TextView in the list_item.xml layout with the ID primary_location
         TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primary_location);
         //Get the rest location (part 1) from the current Earthquake object and set this text on the restLocation Textview.
-        primaryLocationTextView.setText(part2);
+        primaryLocationTextView.setText(primaryLocation);
 
         //Create a new Date Object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());

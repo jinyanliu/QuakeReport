@@ -131,7 +131,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      * Rerurn the formatted magnitude string shoing 1 decimal place (i.e."3.2")
      * from a decimal magnitude value.
      */
-    private String formatMagnitude(double magnitude){
+    private String formatMagnitude(double magnitude) {
         DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
         return magnitudeFormat.format(magnitude);
     }

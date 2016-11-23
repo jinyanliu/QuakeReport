@@ -75,9 +75,12 @@ public class QueryUtils {
                 //Extract “time” for time
                 long time = properties.getLong("time");
 
-                //Create Earthquake java object from magnitude, location, and time
+                //Extract "url" for web link
+                String url = properties.getString("url");
+
+                //Create Earthquake java object from magnitude, location, time and url from the JSON response.
                 //Add earthquake to list of earthquakes
-                earthquakes.add(new Earthquake(magnitude, location, time));
+                earthquakes.add(new Earthquake(magnitude, location, time, url));
             }
 
         } catch (JSONException e) {

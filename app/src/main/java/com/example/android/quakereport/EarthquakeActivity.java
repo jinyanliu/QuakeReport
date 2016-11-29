@@ -17,6 +17,7 @@ package com.example.android.quakereport;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
 
@@ -72,4 +74,17 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
     }
+
+    private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<Earthquake>>{
+        @Override
+        protected List<Earthquake> doInBackground(String... urls) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<Earthquake> data) {
+
+        }
+    }
+
 }

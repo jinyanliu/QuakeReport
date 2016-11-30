@@ -183,6 +183,8 @@ public class QueryUtils {
         // Create URL object
         URL url = createUrl(requestUrl);
 
+        Log.i(LOG_TAG, "fetchEarthquakeData");
+
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {

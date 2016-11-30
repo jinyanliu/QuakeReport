@@ -26,7 +26,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,11 +57,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
      */
     private TextView mEmptyStateTextView;
 
-    /**
-     * ProgressBar that is displayed when the data is loading
-     */
-    private ProgressBar mLoadingIndicator;
-
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int id, Bundle args) {
         //Create a new loader for the given URL
@@ -72,10 +66,13 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
-        //Set ProgressBar to be gone.
-        mLoadingIndicator.setVisibility(View.GONE);
+        //Hide loading indicator because the data has been loaded
+        View loadingIndicator = findViewById(R.id.loading_spinner);
+        loadingIndicator.setVisibility(View.GONE);
+
         // Set empty state text to display "No earthquakes found."
         mEmptyStateTextView.setText(R.string.no_earthquakes);
+
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
         Log.i(LOG_TAG, "onLoadFinished");
@@ -127,8 +124,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         earthquakeListView.setEmptyView(mEmptyStateTextView);
-
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
 
         //Geta reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();

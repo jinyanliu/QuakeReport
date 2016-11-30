@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
      */
     private EarthquakeAdapter mAdapter;
 
+    /**
+     * TextView that is displayed when the list is empty
+     */
+    private TextView mEmptyStateTextView;
+
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int id, Bundle args) {
         //Create a new loader for the given URL
@@ -60,6 +66,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
+        // Set empty state text to display "No earthquakes found."
+        mEmptyStateTextView.setText(R.string.no_earthquakes);
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
         Log.i(LOG_TAG, "onLoadFinished");
@@ -108,6 +116,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
                 startActivity(websiteIntenet);
             }
         });
+
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         //Geta reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();

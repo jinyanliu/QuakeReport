@@ -15,7 +15,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
     }
 
-    public static class EarthquakePreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener{
+    public static class EarthquakePreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -23,7 +23,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             Preference minMagnitude = findPreference(getString(R.string.settings_min_magnitude_key));
             bindPreferenceSummaryToValue(minMagnitude);
-
         }
 
         @Override
@@ -39,6 +38,5 @@ public class SettingsActivity extends AppCompatActivity {
             String preferenceString = preferences.getString(preference.getKey(), "");
             onPreferenceChange(preference, preferenceString);
         }
-
     }
 }

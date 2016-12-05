@@ -41,7 +41,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     }
 
     /**
-     * Provices a view for an AdapterView(ListView, GridView, etc.)
+     * Provides a view for an AdapterView(ListView, GridView, etc.)
      *
      * @param position    The position in the list of data that should be displayed in the list item view.
      * @param convertView The recycled view to populate.
@@ -75,6 +75,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         int magnitudeColor = getMagnitudeColor(currentEarthquake.getMagnitude());
         //Set the color on the magnitude circle
         magnitudeCircle.setColor(magnitudeColor);
+
         //Get the String of Location from currentEarthquake Object
         String locationString = currentEarthquake.getLocation();
 
